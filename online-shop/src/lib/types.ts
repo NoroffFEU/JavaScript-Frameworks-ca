@@ -1,9 +1,9 @@
-// Matches the Online Shop model you pasted
+// API model types
 
 export type Review = {
   id: string;
   username: string;
-  rating: number; // integer
+  rating: number; // integer 0–5
   description?: string;
 };
 
@@ -16,15 +16,15 @@ export type Product = {
   id: string;
   title: string;
   description: string;
-  price: number; // float
-  discountedPrice: number; // float
-  image: ImageObj; // object { url, alt }
-  rating: number; // integer
-  tags: string[]; // Array<string>
-  reviews: Review[]; // Array<Review>
+  price: number;
+  discountedPrice: number;
+  image: ImageObj;
+  rating: number;
+  tags?: string[]; // tags are optional in some responses
+  reviews?: Review[]; // optional array of reviews
 };
 
-// Generic “list” response wrapper from the docs
+// Generic “list” response wrapper from the Noroff docs
 export type ApiListResponse<T> = {
   data: T[];
   meta: {
@@ -41,13 +41,4 @@ export type ApiListResponse<T> = {
 // Generic “single item” response wrapper
 export type ApiItemResponse<T> = {
   data: T;
-};
-
-// UI-friendly types
-export type CartItem = {
-  id: string;
-  title: string;
-  imageUrl: string;
-  unitPrice: number;
-  qty: number;
 };

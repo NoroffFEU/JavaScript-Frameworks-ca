@@ -18,6 +18,7 @@ export default function QtyStepper({ value, min = 1, onChange }: Props) {
         −
       </button>
       <input
+        type="number"
         className="w-12 border-x px-2 py-1 text-center outline-none"
         value={value}
         onChange={(e) => {
@@ -26,6 +27,9 @@ export default function QtyStepper({ value, min = 1, onChange }: Props) {
         }}
         inputMode="numeric"
         aria-label="Quantity"
+        aria-valuemin={min}
+        aria-valuenow={value}
+        role="spinbutton"
       />
       <button
         type="button"

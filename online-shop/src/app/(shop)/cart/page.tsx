@@ -1,14 +1,43 @@
 "use client";
 
-import { useCart } from "@/store/cart.store";
-import CartLine from "@/components/CartLine";
-import { money } from "@/lib/format";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+
+import { useCart } from "@/store/cart.store";
+import { useAuth } from "@/store/auth.store";
+import CartLine from "@/components/cart/CartLine";
+import { money } from "@/lib/format";
+import { createOrder } from "@/lib/orders";
 
 export default function CartPage() {
   const items = useCart((s) => s.items);
   const total = useCart((s) => s.total());
+  const clear = useCart((s) => s.clear);
+  const { user } = useAuth();
   const router = useRouter();
+
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  function handlePurchase() {
+    if (!items.length || isProcessing) return;
+
+    if (!user) {
+      toast.error("Please login before purchasing.");
+      router.push("/auth/login");
+      return;
+    }
+
+    setIsProcessing(true);
+    try {
+      const order = createOrder(user.email, items, total);
+      sessionStorage.setItem("lastOrder", JSON.stringify(order));
+      clear(); // clear cart after saving the order
+      router.push("/checkout/success");
+    } finally {
+      setIsProcessing(false);
+    }
+  }
 
   if (!items.length) {
     return (
@@ -29,15 +58,18 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-between rounded-xl border p-4">
+      <div className="mt-8 flex items-center justify-between rounded-xl border border-gray-200 p-6">
         <p className="text-lg">
-          Total: <span className="font-bold">{money(total)}</span>
+          Total:{" "}
+          <span className="font-bold px-2 text-red-600">{money(total)}</span>
         </p>
         <button
-          onClick={() => router.push("/checkout/success")}
-          className="rounded-lg bg-black px-5 py-2.5 text-white hover:bg-gray-800"
+          type="button"
+          onClick={handlePurchase}
+          disabled={isProcessing}
+          className="rounded-lg bg-amber-600 px-5 py-3 text-white font-bold hover:bg-amber-800 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Checkout
+          {isProcessing ? "Processing..." : "Order Now"}
         </button>
       </div>
     </main>

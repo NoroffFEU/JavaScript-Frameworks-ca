@@ -1,9 +1,13 @@
 import ProductCard from "./ProductCard";
 import type { Product } from "@/lib/types";
 
-export default function ProductGrid({ products }: { products: Product[] }) {
+type Props = {
+  products: Product[];
+};
+
+export default function ProductGrid({ products }: Props) {
   if (!products?.length) {
-    return <p className="text-center text-gray-500">No products found.</p>;
+    return <p className="text-center text-gray-900">No products found.</p>;
   }
 
   return (

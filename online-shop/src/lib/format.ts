@@ -15,3 +15,9 @@ export function money(n: number, locale = "en-US", currency = "USD") {
     n
   );
 }
+
+export function getUnitPrice(product: Product) {
+  return product.discountedPrice < product.price
+    ? product.discountedPrice
+    : product.price;
+}
