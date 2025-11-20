@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { MouseEvent } from "react";
+import RatingStars from "@/components/product/RatingStars";
 
 import type { Product } from "@/lib/types";
 import { getUnitPrice } from "@/lib/format";
@@ -67,6 +68,26 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         </div>
       </div>
+      {product.tags?.length ? (
+        <p className="mt-3 text-sm text-gray-600">
+          Tags: {product.tags.join(", ")}
+        </p>
+      ) : null}
+
+      {product.reviews?.length ? (
+        <section className="mt-6 space-y-3">
+          <h2 className="font-semibold">Reviews</h2>
+          {product.reviews.map((r) => (
+            <article key={r.id} className="rounded border p-3 text-sm">
+              <p className="font-medium">{r.username}</p>
+              <RatingStars rating={r.rating} className="mt-1" />
+              {r.description && (
+                <p className="mt-1 text-gray-700">{r.description}</p>
+              )}
+            </article>
+          ))}
+        </section>
+      ) : null}
     </Link>
   );
 }
