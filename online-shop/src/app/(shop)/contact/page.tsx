@@ -72,7 +72,6 @@ export default function ContactPage() {
       return;
     }
 
-    // In a real app you’d send to an API here
     setSent(true);
     toast.success("We have received your message and will reply shortly.");
     setValues(initialValues);

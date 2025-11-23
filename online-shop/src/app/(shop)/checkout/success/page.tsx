@@ -25,14 +25,14 @@ function readLastOrder(): Order | null {
 /* ---------- Component ---------- */
 
 export default function CheckoutSuccessPage() {
-  // Lazy init from sessionStorage (no setState in effect)
+  // Lazy init from sessionStorage
   const [order] = useState<Order | null>(() => readLastOrder());
 
   // Side-effect only: toast (no state updates)
   useEffect(() => {
     if (order) {
       toast.success("Thank you for your order!");
-      // Optionally clear once shown:
+
       // sessionStorage.removeItem("lastOrder");
     }
   }, [order]);

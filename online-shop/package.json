@@ -32,9 +32,9 @@
     "@types/react-dom": "^19.2.2",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
-    "jsdom": "^27.0.1",
+    "jsdom": "^22.1.0",
     "tailwindcss": "^4",
     "typescript": "^5.9.3",
-    "vitest": "file:..."
+    "vitest": "^4.0.13"
   }
 }

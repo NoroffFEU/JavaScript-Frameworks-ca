@@ -30,7 +30,7 @@ export default function ProductCard({ product }: { product: Product }) {
       href={`/product/${product.id}`}
       className="group relative block overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
     >
-      <div className="relative aspect-[4/3] w-full">
+      <div className="relative aspect-4/3 w-full">
         <Image
           src={product.image.url}
           alt={product.image.alt}

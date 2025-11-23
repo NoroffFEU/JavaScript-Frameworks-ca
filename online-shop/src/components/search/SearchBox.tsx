@@ -63,7 +63,7 @@ export default function SearchBox({ products, onQueryChange }: Props) {
                   onClick={() => setQuery("")}
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded">
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded">
                     <Image
                       src={p.image.url}
                       alt={p.image.alt}
