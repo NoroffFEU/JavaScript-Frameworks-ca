@@ -8,6 +8,7 @@ import { getUnitPrice } from "@/lib/format";
 import { Price } from "@/components/product/Price";
 import DiscountSticker from "@/components/product/DiscountSticker";
 import { useAddToCart } from "@/hooks/useAddToCart";
+import RatingStars from "@/components/product/RatingStars";
 
 export default function ProductCard({ product }: { product: Product }) {
   const addToCart = useAddToCart();
@@ -65,6 +66,17 @@ export default function ProductCard({ product }: { product: Product }) {
             price={product.price}
             discountedPrice={product.discountedPrice}
           />
+        </div>
+
+        {/* ⭐ rating */}
+        <div className="flex items-center gap-1">
+          <RatingStars
+            rating={product.rating}
+            className="text-amber-500 text-xs"
+          />
+          <span className="text-[11px] text-gray-500">
+            {product.rating.toFixed(1)}
+          </span>
         </div>
 
         {/* tags  */}

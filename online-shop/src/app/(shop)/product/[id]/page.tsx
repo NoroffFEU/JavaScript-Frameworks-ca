@@ -70,6 +70,12 @@ export default async function ProductPage({ params }: PageProps) {
         {/* Description */}
         <p className="mt-6 text-gray-900">{product.description}</p>
 
+        {product.tags?.length ? (
+          <p className="mt-4 text-sm text-gray-600">
+            <span className="font-medium">Tags:</span> {product.tags.join(", ")}
+          </p>
+        ) : null}
+
         {/* Add to cart */}
         <div className="mt-4">
           <AddToCartButton
