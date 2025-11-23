@@ -56,7 +56,7 @@ export default function SearchBox({ products, onQueryChange }: Props) {
           {results.map((p) => {
             const unitPrice = getUnitPrice(p);
             return (
-              <li key={p.id} role="option">
+              <li key={p.id} role="option" aria-selected="false">
                 <Link
                   href={`/product/${p.id}`}
                   className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100"

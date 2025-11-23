@@ -32,8 +32,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </p>
           </div>
         </footer>
+
         <Toaster
-          position="bottom-center"
+          position="top-right"
           gutter={8}
           toastOptions={{
             duration: 2000, // disappear faster

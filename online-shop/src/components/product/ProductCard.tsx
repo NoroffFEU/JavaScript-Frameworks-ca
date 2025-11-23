@@ -14,7 +14,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const unitPrice = getUnitPrice(product);
 
   function handleAdd(e: MouseEvent<HTMLButtonElement>) {
-    e.preventDefault(); // don't navigate when clicking the icon
+    e.preventDefault();
     addToCart({
       id: product.id,
       title: product.title,
