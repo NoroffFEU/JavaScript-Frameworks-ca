@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           position="top-right"
           gutter={8}
           toastOptions={{
-            duration: 2000, // disappear faster
+            duration: 2000,
             style: {
               fontSize: "0.875rem",
               maxWidth: "90vw",

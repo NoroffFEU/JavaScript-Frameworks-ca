@@ -20,8 +20,8 @@ export type Product = {
   discountedPrice: number;
   image: ImageObj;
   rating: number;
-  tags?: string[]; // tags are optional in some responses
-  reviews?: Review[]; // optional array of reviews
+  tags?: string[];
+  reviews?: Review[];
 };
 
 // Generic “list” response wrapper from the Noroff docs

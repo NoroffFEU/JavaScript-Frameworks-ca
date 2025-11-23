@@ -12,7 +12,7 @@ type AuthState = {
   logout: () => void;
 };
 
-// Demo-only local “db” (per browser). Not secure – document this in README.
+// Demo-only local “db”  Not secure
 function saveUser(email: string, password: string) {
   localStorage.setItem(`user:${email}`, JSON.stringify({ email, password }));
 }

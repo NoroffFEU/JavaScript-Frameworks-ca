@@ -13,7 +13,7 @@ async function getJson<T>(url: string, init?: RequestInit): Promise<T> {
       // ignore body read errors
     }
 
-    // This will show in your terminal / server logs
+    //  terminal / server logs
     console.error("API ERROR", { url, status: res.status, body });
     throw new Error(`API ${res.status} for ${url}`);
   }
@@ -23,7 +23,7 @@ async function getJson<T>(url: string, init?: RequestInit): Promise<T> {
 
 export async function listProducts(): Promise<Product[]> {
   const json = await getJson<ApiListResponse<Product>>(BASE_URL);
-  return json.data; // return just the array for convenience
+  return json.data; // return just the array
 }
 
 export async function getProduct(id: string): Promise<Product> {
