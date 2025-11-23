@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { MouseEvent } from "react";
-import RatingStars from "@/components/product/RatingStars";
-
 import type { Product } from "@/lib/types";
 import { getUnitPrice } from "@/lib/format";
 import { Price } from "@/components/product/Price";
@@ -29,7 +27,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/product/${product.id}`}
-      className="group relative block overflow-hidden rounded-lg  border border-gray-100 shadow-md bg-white"
+      className="group relative block overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
     >
       <div className="relative aspect-[4/3] w-full">
         <Image
@@ -46,7 +44,7 @@ export default function ProductCard({ product }: { product: Product }) {
         type="button"
         onClick={handleAdd}
         aria-label="Add to cart"
-        className="absolute right-2 top-2 rounded-full  bg-white py-0.5 px-2 text-amber-900 opacity-60 transition group-hover:opacity-100"
+        className="absolute right-2 top-2 rounded-full bg-white px-2 py-0.5 text-amber-900 opacity-60 transition group-hover:opacity-100"
         title="Add to cart"
       >
         +
@@ -61,33 +59,21 @@ export default function ProductCard({ product }: { product: Product }) {
 
       <div className="space-y-1 p-3">
         <h3 className="line-clamp-1 text-sm font-medium">{product.title}</h3>
+
         <div className="flex items-center gap-2 text-gray-900">
           <Price
             price={product.price}
             discountedPrice={product.discountedPrice}
           />
         </div>
-      </div>
-      {product.tags?.length ? (
-        <p className="mt-3 text-sm text-gray-600">
-          Tags: {product.tags.join(", ")}
-        </p>
-      ) : null}
 
-      {product.reviews?.length ? (
-        <section className="mt-6 space-y-3">
-          <h2 className="font-semibold">Reviews</h2>
-          {product.reviews.map((r) => (
-            <article key={r.id} className="rounded border p-3 text-sm">
-              <p className="font-medium">{r.username}</p>
-              <RatingStars rating={r.rating} className="mt-1" />
-              {r.description && (
-                <p className="mt-1 text-gray-700">{r.description}</p>
-              )}
-            </article>
-          ))}
-        </section>
-      ) : null}
+        {/* tags  */}
+        {product.tags?.length ? (
+          <p className="mt-1 line-clamp-1 text-xs text-gray-500">
+            {product.tags.slice(0, 3).join(" • ")}
+          </p>
+        ) : null}
+      </div>
     </Link>
   );
 }

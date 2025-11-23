@@ -8,20 +8,23 @@ export default function RatingStars({ rating, outOf = 5, className }: Props) {
   const full = Math.max(0, Math.min(outOf, Math.round(rating)));
 
   return (
-    <div
-      className={className}
-      role="img"
-      aria-label={`Rating: ${full} out of ${outOf}`}
-    >
-      {Array.from({ length: outOf }).map((_, i) => (
-        <span
-          key={i}
-          aria-hidden="true"
-          className={i < full ? "text-yellow-500" : "text-gray-900"}
-        >
-          ★
-        </span>
-      ))}
+    <div className={className}>
+      {/* Screen reader text */}
+      <span className="sr-only">
+        Rated {rating.toFixed(1)} out of {outOf}
+      </span>
+
+      {/* Visual stars only, hidden from screen reader */}
+      <div aria-hidden="true">
+        {Array.from({ length: outOf }).map((_, i) => (
+          <span
+            key={i}
+            className={i < full ? "text-yellow-500" : "text-gray-300"}
+          >
+            ★
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

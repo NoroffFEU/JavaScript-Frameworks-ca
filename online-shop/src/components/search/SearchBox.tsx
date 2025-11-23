@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 import type { Product } from "@/lib/types";
 import { matchesProductQuery } from "@/lib/search";
+import { getUnitPrice, money } from "@/lib/format";
 
 type Props = {
   products: Product[];
@@ -34,7 +36,7 @@ export default function SearchBox({ products, onQueryChange }: Props) {
       <input
         type="text"
         placeholder="Search products…"
-        className="w-full rounded-md border  border-gray-300 px-3 py-2"
+        className="w-full rounded-md border border-gray-300 px-3 py-2"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => setOpen(true)}
@@ -49,19 +51,39 @@ export default function SearchBox({ products, onQueryChange }: Props) {
         <ul
           id={listId}
           role="listbox"
-          className="absolute left-0 right-0 z-10 mt-1 max-h-72 overflow-auto rounded-md border  bg-white shadow"
+          className="absolute left-0 right-0 z-10 mt-1 max-h-72 overflow-auto rounded-md border bg-white shadow"
         >
-          {results.map((p) => (
-            <li key={p.id} role="option">
-              <Link
-                href={`/product/${p.id}`}
-                className="block px-3 py-2 hover:bg-gray-100"
-                onClick={() => setQuery("")}
-              >
-                {p.title}
-              </Link>
-            </li>
-          ))}
+          {results.map((p) => {
+            const unitPrice = getUnitPrice(p);
+            return (
+              <li key={p.id} role="option">
+                <Link
+                  href={`/product/${p.id}`}
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100"
+                  onClick={() => setQuery("")}
+                >
+                  {/* Thumbnail */}
+                  <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded">
+                    <Image
+                      src={p.image.url}
+                      alt={p.image.alt}
+                      fill
+                      className="object-cover"
+                      sizes="40px"
+                    />
+                  </div>
+
+                  {/* Title + price */}
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <span className="truncate text-sm">{p.title}</span>
+                    <span className="text-xs text-gray-500">
+                      {money(unitPrice)}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

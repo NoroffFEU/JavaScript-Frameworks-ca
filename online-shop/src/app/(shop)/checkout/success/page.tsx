@@ -75,8 +75,8 @@ export default function CheckoutSuccessPage() {
       )}
 
       <div className="mt-8">
-        <Link href="/" className=" px-5 py-2.5 text-gray-800">
-          ← continue Shoping
+        <Link href="/" className=" px-5 py-2.5 text-amber-800">
+          ← continue Shopping
         </Link>
       </div>
     </main>
