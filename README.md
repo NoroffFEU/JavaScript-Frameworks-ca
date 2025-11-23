@@ -183,6 +183,16 @@ http://localhost:3000 in your browser.
 
 ---
 
+## 3. Run tests
+
+This project uses Vitest and React Testing Library.
+To run the tests:
+
+```bash
+npm test
+
+```
+
 ### Notes & Limitations
 
 This is a course assignment, not a production-ready store.
