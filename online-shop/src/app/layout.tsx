@@ -32,8 +32,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </p>
           </div>
         </footer>
-
-        <Toaster position="top-right" />
+        <Toaster
+          position="bottom-center"
+          gutter={8}
+          toastOptions={{
+            duration: 2000, // disappear faster
+            style: {
+              fontSize: "0.875rem",
+              maxWidth: "90vw",
+            },
+          }}
+        />
       </body>
     </html>
   );

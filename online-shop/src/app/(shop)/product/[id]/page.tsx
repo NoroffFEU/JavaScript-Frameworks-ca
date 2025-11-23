@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: PageProps) {
       <main className="mx-auto max-w-4xl p-4">
         <h1 className="text-2xl font-semibold">{product.title}</h1>
 
-        {/* ⭐ Rating + review count (clickable) */}
+        {/* ⭐ Rating + review count  +clickable */}
         <div className="mt-1 flex items-center gap-2">
           <RatingStars rating={product.rating} className="text-amber-500" />
           <a
